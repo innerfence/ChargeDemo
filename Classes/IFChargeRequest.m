@@ -68,6 +68,7 @@ static NSString* IFEncodeURIComponent( NSString* s )
     @"address", \
     @"amount", \
     @"city", \
+    @"company", \
     @"country", \
     @"currency", \
     @"description", \
@@ -104,6 +105,7 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 @synthesize address        = _address;
 @synthesize amount         = _amount;
 @synthesize city           = _city;
+@synthesize company        = _company;
 @synthesize country        = _country;
 @synthesize currency       = _currency;
 @synthesize description    = _description;
@@ -287,6 +289,7 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [_address release];
     [_amount release];
     [_city release];
+    [_company release];
     [_country release];
     [_currency release];
     [_description release];

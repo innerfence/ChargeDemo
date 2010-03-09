@@ -69,6 +69,7 @@
     chargeRequest.amount         = @"50.00";
     chargeRequest.currency       = @"USD";
     chargeRequest.city           = @"Nowhereville";
+    chargeRequest.company        = @"Company Inc";
     chargeRequest.country        = @"US";
     chargeRequest.description    = @"Test transaction";
     chargeRequest.email          = @"john@example.com";

@@ -41,6 +41,7 @@
     NSString* _address;
     NSString* _amount;
     NSString* _city;
+    NSString* _company;
     NSString* _country;
     NSString* _currency;
     NSString* _description;
@@ -100,6 +101,10 @@
 // city - The city of the customer's billing address.
 // Up to 40 characters (no symbols).
 @property (copy) NSString* city;
+
+// company - The company associated with the customer's billing address.
+// Up to 50 characters (no symbols).
+@property (copy) NSString* company;
 
 // country - The country code of the customer's billing address. (E.g. US for USA)
 // Up to 60 characters (no symbols).
