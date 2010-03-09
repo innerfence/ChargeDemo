@@ -17,8 +17,6 @@
 		28D7ACF80DDB3853001CB0EB /* ChargeDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* ChargeDemoViewController.m */; };
 		945DC2E20EE703AD008A303C /* IFChargeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 945DC2E10EE703AD008A303C /* IFChargeRequest.m */; };
 		945DC3320EE876AB008A303C /* IFChargeResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 945DC3310EE876AB008A303C /* IFChargeResponse.m */; };
-		945DC3360EE876C0008A303C /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = 945DC3340EE876C0008A303C /* COPYING */; };
-		945DC3370EE876C0008A303C /* README in Resources */ = {isa = PBXBuildFile; fileRef = 945DC3350EE876C0008A303C /* README */; };
 		94FD90E40EEF18F1001680A6 /* ChargeDemoAppDelegate+HandleURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FD90E30EEF18F1001680A6 /* ChargeDemoAppDelegate+HandleURL.m */; };
 		94FFCF6B0F6B2D7000A8072A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FFCF6A0F6B2D7000A8072A /* Icon.png */; };
 /* End PBXBuildFile section */
@@ -42,7 +40,7 @@
 		945DC3300EE876AB008A303C /* IFChargeResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IFChargeResponse.h; path = Classes/IFChargeResponse.h; sourceTree = "<group>"; };
 		945DC3310EE876AB008A303C /* IFChargeResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IFChargeResponse.m; path = Classes/IFChargeResponse.m; sourceTree = "<group>"; };
 		945DC3340EE876C0008A303C /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
-		945DC3350EE876C0008A303C /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		945DC3350EE876C0008A303C /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		94FD90E30EEF18F1001680A6 /* ChargeDemoAppDelegate+HandleURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChargeDemoAppDelegate+HandleURL.m"; sourceTree = "<group>"; };
 		94FFCF6A0F6B2D7000A8072A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				945DC3340EE876C0008A303C /* COPYING */,
-				945DC3350EE876C0008A303C /* README */,
+				945DC3350EE876C0008A303C /* README.markdown */,
 			);
 			name = Docs;
 			sourceTree = "<group>";
@@ -190,8 +188,6 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* ChargeDemoViewController.xib in Resources */,
-				945DC3360EE876C0008A303C /* COPYING in Resources */,
-				945DC3370EE876C0008A303C /* README in Resources */,
 				94FFCF6B0F6B2D7000A8072A /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
