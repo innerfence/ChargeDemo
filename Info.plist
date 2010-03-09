@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+
+Info.plist
+Sample Code
+
+Stock xcode-generated file plus a registration for an app-specific URL
+scheme for 2-way charge integration with Credit Card Terminal.
+
+You may license this source code under the MIT License. See COPYING.
+
+Copyright (c) 2009 Inner Fence, LLC
+
+-->
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleDisplayName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.${PRODUCT_NAME:identifier}</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSMainNibFile</key>
+	<string>MainWindow</string>
+    <!-- Register the URL scheme for 2-way integration with Credit
+      -- Card Terminal
+      -->
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+        <!-- The name can be anything you like. We suggest including
+          -- your company and app name to avoid potential collisions.
+          -->
+        <key>CFBundleURLName</key>
+        <string>com.innerfence.ChargeDemo</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <!-- This app will handle com-innerfence-ChargeDemo://
+            -- requests. This is the base part of the URL to use
+            -- for the returnURL with credit card terminal.
+            --
+            -- We suggest including your company and app name to
+            -- avoid potential collisions.
+            -->
+          <string>com-innerfence-ChargeDemo</string>
+        </array>
+      </dict>
+    </array>
+	<key>UIPrerenderedIcon</key>
+	<true/>
+</dict>
+</plist>
