@@ -1,4 +1,5 @@
-== OVERVIEW ==
+OVERVIEW
+========
 
 The ChargeDemo source code demonstrates how to implement 2-way
 integration for accepting credit card payments using Credit Card
@@ -10,9 +11,10 @@ card payment. When the user is done with Credit Card Terminal,
 ChargeDemo will be launched via its URL handler for
 com-innerfence-ChargeDemo://.
 
-== FILE MANIFEST ==
+FILE MANIFEST
+=============
 
-* README
+* README.markdown
 
 This file.
 
