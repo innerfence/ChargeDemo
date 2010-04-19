@@ -160,11 +160,15 @@
 // submit.
 - (NSURL*)requestURL;
 
+#if TARGET_OS_IPHONE
+
 // submit - Invokes the URL for this request. If Credit Card Terminal
 // is installed, your app will terminate and Credit Card Terminal will
 // run. If not, either creditCardTerminalNotInstalled will be sent to
 // the delegate or a default UIAlert will be displayed.
 - (void)submit;
+
+#endif
 
 @end
 

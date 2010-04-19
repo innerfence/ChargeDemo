@@ -32,7 +32,10 @@
 #import "IFChargeRequest.h"
 
 #include <stdlib.h>
+
+#ifdef TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
+#endif
 
 #ifdef IF_INTERNAL
 
@@ -173,6 +176,7 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     {
         [_delegate creditCardTerminalNotInstalled];
     }
+#if TARGET_OS_IPHONE
     else
     {
         [[[[UIAlertView alloc]
@@ -183,6 +187,7 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
             otherButtonTitles:nil
         ] autorelease] show];
     }
+#endif
 }
 
 // Create the appropriate request URL based on the current property
@@ -250,6 +255,7 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [urlString release];
 }
 
+#if TARGET_OS_IPHONE
 
 // Submit the charge request. The current application will terminate
 // and Credit Card Terminal will launch with the specified fields
@@ -278,6 +284,8 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
           withObject:nil
           afterDelay:1];
 }
+
+#endif
 
 - (void)dealloc
 {
