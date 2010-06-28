@@ -274,15 +274,37 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
     // Submit the URL
     NSURL* url = [self requestURL];
+
+    UIApplication* app = [UIApplication sharedApplication];
+
+    // On newer OSes, we can query and know for sure if Credit Card
+    // Terminal is installed.
+    BOOL assuredSuccess = NO;
+    if ( [app respondsToSelector:@selector(canOpenURL:)] )
+    {
+        assuredSuccess = [app canOpenURL:url];
+        if ( !assuredSuccess )
+        {
+            // Assured failure -- early out.
+            [self creditCardTerminalNotInstalled];
+            return;
+        }
+    }
+
     [[UIApplication sharedApplication] openURL:url];
 
-    // If the openURL succeeds, this app will terminate. Otherwise, we'll
-    // get this callback on the next event loop.
-    [self retain];
-    [_delegate retain];
-    [self performSelector:@selector(creditCardTerminalNotInstalled)
-          withObject:nil
-          afterDelay:1];
+    if ( !assuredSuccess )
+    {
+        // On older OSes, if the openURL succeeds, this app will
+        // terminate. We register here to receive a callback in 1
+        // second, which will only happen if we don't terminate,
+        // meaning the openURL failed.
+        [self retain];
+        [_delegate retain];
+        [self performSelector:@selector(creditCardTerminalNotInstalled)
+              withObject:nil
+              afterDelay:1];
+    }
 }
 
 #endif
