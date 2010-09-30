@@ -152,12 +152,10 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 - (NSString*)createAndStoreNonce
 {
-    srandomdev();
-
     NSMutableString* nonceString = [[[NSMutableString alloc] initWithCapacity:kNonceLength] autorelease];
     for ( NSUInteger i = 0; i < kNonceLength; i++ )
     {
-        [nonceString appendFormat:@"%c", _nonceAlphabet[ ( random() & kNonceAlphabetMask ) ]];
+        [nonceString appendFormat:@"%c", _nonceAlphabet[ ( arc4random() & kNonceAlphabetMask ) ]];
     }
 
     [[NSUserDefaults standardUserDefaults] setObject:nonceString forKey:IF_CHARGE_NONCE_KEY];
