@@ -86,6 +86,17 @@ Cleanup:
     return matches;
 }
 
+void ReportError( NSString* message )
+{
+    [[[[UIAlertView alloc]
+          initWithTitle:@"Error"
+          message:message
+          delegate:nil
+          cancelButtonTitle:@"OK"
+          otherButtonTitles:nil
+    ] autorelease] show];
+}
+
 @implementation ChargeDemoAppDelegate (HandleURL)
 
 - (BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)url
@@ -131,7 +142,7 @@ Cleanup:
     {
         // In your app, this might mean that you should handle this as
         // a normal URL request instead of a charge response.
-        NSLog( @"Unknown URL, abandoning the request!" );
+        ReportError( @"Unknown URL, abandoning the request!" );
         return NO;
     }
 
@@ -144,7 +155,7 @@ Cleanup:
     }
     @catch ( NSException* e )
     {
-        NSLog( @"URL not valid charge response, abandoning the request!" );
+        ReportError( @"URL not valid charge response, abandoning the request!" );
         return NO;
     }
     @finally
@@ -160,7 +171,7 @@ Cleanup:
     // important to validate any parameters.
     if ( !IsValidRecordId( recordId ) )
     {
-        NSLog( @"Bad record id, abandoning the request!" );
+        ReportError( @"Bad record id, abandoning the request!" );
         return NO;
     }
 

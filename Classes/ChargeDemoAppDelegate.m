@@ -9,16 +9,32 @@
 @synthesize window;
 @synthesize viewController;
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {
-    // Override point for customization after app launch
-    [window addSubview:viewController.view];
-    [window makeKeyAndVisible];
-}
-
-- (void)dealloc {
+- (void)dealloc
+{
     [viewController release];
     [window release];
     [super dealloc];
+}
+
+- (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
+{
+    [window addSubview:viewController.view];
+    [window makeKeyAndVisible];
+
+    NSURL* launchURL = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
+    if ( nil != launchURL )
+    {
+        [self application:application handleOpenURL:launchURL];
+    }
+
+    // On 2.* (not supported here), didFinishLaunchingWithOptions is not supported.
+    // On 3.0.* and 3.1.*, handleOpenURL is not called if didFinishLaunchingWithOptions is implemented.
+    // On 3.2.* and 4.*, handleOpenURL is called if didFinishLaunchingWithOptions returns YES.
+    // So, to support 3.0 and 3.1, we must call handleOpenURL in this handler.
+    // And, to avoid double-calling it on 3.2 and 4.*, we must return NO in the case we're handling a URL.
+    // https://devforums.apple.com/message/283356
+
+    return ( nil == launchURL );
 }
 
 @end
