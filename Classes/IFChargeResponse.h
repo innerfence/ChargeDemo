@@ -70,19 +70,19 @@ typedef enum {
 // amount - The amount that was charged to the card. This is a string,
 // which is a currency value to two decimal places like @"50.00". This
 // property will only be set if responseCode is Accepted.
-@property (readonly,copy)   NSString*            amount;
+@property (nonatomic,readonly,copy)   NSString*            amount;
 
 // cardType - The type of card that was charged. This will be
 // something like "Visa", "MasterCard", "American Express", or
 // "Discover". This property will only be set if responseCode is
 // Accepted. In the case that the card type is unknown, this property
 // will be nil.
-@property (readonly,copy)   NSString*            cardType;
+@property (nonatomic,readonly,copy)   NSString*            cardType;
 
 // currency - The ISO 4217 currency code for the transaction
 // amount. For example, "USD" for US Dollars. This property will be
 // set when amount is set.
-@property (readonly,copy)   NSString*            currency;
+@property (nonatomic,readonly,copy)   NSString*            currency;
 
 // extraParams - This dictionary contains any unrecognized query
 // parameters that were part of the URL. This should be the same as
@@ -96,15 +96,15 @@ typedef enum {
 // parameters from the extraParams fields that you will be using. For
 // example, if you expect a numeric value, you should ensure the field
 // is comprised of digits.
-@property (readonly,retain) NSDictionary*        extraParams;
+@property (nonatomic,readonly,retain) NSDictionary*        extraParams;
 
 // redactedCardNumber - This string is the credit card number with all
 // but the last four digits replaced by 'X'. This property will only
 // be set if responseCode is Accepted.
-@property (readonly,copy)   NSString*            redactedCardNumber;
+@property (nonatomic,readonly,copy)   NSString*            redactedCardNumber;
 
 // responseCode - One of the IFChargeResponseCode enum values.
-@property (readonly,assign) IFChargeResponseCode responseCode;
+@property (nonatomic,readonly,assign) IFChargeResponseCode responseCode;
 
 // initWithURL - Pass the URL that you receive in
 // application:handleOpenURL: and the resulting object will have the
