@@ -1,5 +1,5 @@
 //
-// IFChargeRequest.m
+// IFChargeResponse.m
 // Inner Fence Credit Card Terminal for iPhone
 // API 1.0.0
 //
@@ -156,12 +156,12 @@ static NSDictionary* _responseCodes;
 
 @interface IFChargeResponse ()
 
-@property (readwrite,copy)   NSString*     amount;
-@property (readwrite,copy)   NSString*     cardType;
-@property (readwrite,copy)   NSString*     currency;
-@property (readwrite,retain) NSDictionary* extraParams;
-@property (readwrite,copy)   NSString*     redactedCardNumber;
-@property (readwrite,copy)   NSString*     responseType;
+@property (nonatomic,readwrite,copy)   NSString*     amount;
+@property (nonatomic,readwrite,copy)   NSString*     cardType;
+@property (nonatomic,readwrite,copy)   NSString*     currency;
+@property (nonatomic,readwrite,retain) NSDictionary* extraParams;
+@property (nonatomic,readwrite,copy)   NSString*     redactedCardNumber;
+@property (nonatomic,readwrite,copy)   NSString*     responseType;
 
 - (void) validateFields;
 
