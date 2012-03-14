@@ -56,7 +56,7 @@ typedef enum {
 
 @interface IFChargeResponse : NSObject
 {
-@private
+@protected
     NSString*            _baseURL;
     NSString*            _amount;
     NSString*            _cardType;

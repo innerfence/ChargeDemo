@@ -32,7 +32,7 @@
 //
 @interface IFChargeRequest : NSObject
 {
-@private
+@protected
     NSObject* _delegate;
 
     NSString* _returnAppName;
