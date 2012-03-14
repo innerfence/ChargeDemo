@@ -25,6 +25,7 @@ Base URL: `com-innerfence-ccterminal://charge/1.0.0/`
 
 * `returnAppName` - your app's name, displayed to give the user context
 * `returnURL` - your app's URL handler, see PROTOCOL RESPONSE
+* `fm` - if set to 1, the FileMaker-compatible response format will be used
 * `amount` - amount of the transaction (e.g. `10.99`, `1.00`, `0.90`)
 * `currency` - currecy code of amount (e.g. `USD`)
 * `email` - customer's email address for receipt
@@ -73,6 +74,11 @@ Here is a simple example:
 ```
 com-your-app://action/?ifcc_responseType=approved&ifcc_amount=10.99&ifcc_currency=USD&ifcc_redactedCardNumber=XXXXXXXXXXXX1111&ifcc_cardType=Visa
 ```
+
+When the `fm=1` parameter is included in the original request, the
+response is modified by including a dollar-sign ($) before each query
+value so that they can be accessed by FileMaker Go scripts. For instance,
+instead of `ifcc_responseType=success`, `$ifcc_responseType=success`.
 
 FILE MANIFEST
 =============
