@@ -41,11 +41,6 @@ Base URL: `com-innerfence-ccterminal://charge/1.0.0/`
 * `invoiceNumber` - merchant-assigned invoice number
 * `description` - description of goods or services
 
-Any unrecognized query string parameters will be returned as part of
-the response. This mechanism can be used to provide appropriate
-context parameters for your app to, for example, launch back to the
-correct screen.
-
 Here is a simple example. Please note the correct encoding of parameters:
 
 ```
