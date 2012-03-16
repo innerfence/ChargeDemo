@@ -12,7 +12,7 @@ ChargeDemo will be launched via its URL handler for
 `com-innerfence-ChargeDemo://`.
 
 Protocol details are provided below in the case that you cannot or do
-not with to use our Objective-C classes.
+not wish to use our Objective-C classes.
 
 PROTOCOL REQUEST
 ================
