@@ -61,9 +61,6 @@ with any query parameters your app may already recognize.
 * `ifcc_redactedCardNumber` - redacted card number (e.g. `XXXXXXXXXXXX1111`)
 * `ifcc_cardType` - card type: `Visa`, `MasterCard`, `Amex`, `Discover`, `Maestro`, `Solo`, or `Unknown`
 
-In addition, any unrecognized parameters that were included in the
-original request will be returned with the response.
-
 Here is a simple example:
 
 ```
