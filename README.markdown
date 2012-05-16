@@ -80,10 +80,10 @@ INTEGRATION CHECKLIST
 =====================
 
 * Add the IFChargeRequest.h, IFChargeRequest.m, IFChargeResponse.h,
-and IFChargeResponse.m files to your Xcode project.
+  and IFChargeResponse.m files to your Xcode project.
 
-* Make sure your application is registered to handle a URL scheme in
-your Info.plist. For example:
+* Make sure your application is registered to handle a URL scheme
+  inyour Info.plist. For example:
 
 ```xml
 <key>CFBundleURLTypes</key>
@@ -100,10 +100,10 @@ your Info.plist. For example:
 ```
 
 * Request payment by creating an IFChargeRequest object, setting its
-properties, and calling its submit method. Be sure to set the
-returnURL property. Consider using setReturnURL:withExtraParams: to
-automatically include extra parameters in the query string. For
-example:
+  properties, and calling its submit method. Be sure to set the
+  returnURL property. Consider using setReturnURL:withExtraParams: to
+  automatically include extra parameters in the query string. For
+  example:
 
 ```objc
 IFChargeRequest* chargeRequest =
@@ -126,9 +126,9 @@ chargeRequest.invoiceNumber = @"321";
 ```
 
 * Handle charge responses in your app delegate’s
-application:handleOpenURL: by creating an IFChargeResponse object
-using initWithURL:. Use the responseCode property to determine if the
-transaction was successful. For example:
+  application:handleOpenURL: by creating an IFChargeResponse object
+  using initWithURL:. Use the responseCode property to determine if
+  the transaction was successful. For example:
 
 ```objc
 - (BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)url
