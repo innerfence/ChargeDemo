@@ -14,6 +14,10 @@ ChargeDemo will be launched via its URL handler for
 Protocol details are provided below in the case that you cannot or do
 not wish to use our Objective-C classes.
 
+Please visit our [Developer API
+page](http://www.innerfence.com/apps/credit-card-terminal/app-developers)
+to see how the user experience flow will be like.
+
 PROTOCOL REQUEST
 ================
 
@@ -71,6 +75,90 @@ When the `fm=1` parameter is included in the original request, the
 response is modified by including a dollar-sign ($) before each query
 value so that they can be accessed by FileMaker Go scripts. For instance,
 instead of `ifcc_responseType=success`, `$ifcc_responseType=success`.
+
+INTEGRATION CHECKLIST
+=====================
+
+* Add the IFChargeRequest.h, IFChargeRequest.m, IFChargeResponse.h,
+and IFChargeResponse.m files to your Xcode project.
+
+* Make sure your application is registered to handle a URL scheme in
+your Info.plist. For example:
+
+```xml
+<key>CFBundleURLTypes</key>
+<array>
+  <dict>
+    <key>CFBundleURLName</key>
+    <string>com.innerfence.ChargeDemo</string>
+    <key>CFBundleURLSchemes</key>
+    <array>
+      <string>com-innerfence-ChargeDemo</string>
+    </array>
+  </dict>
+</array>
+```
+
+* Request payment by creating an IFChargeRequest object, setting its
+properties, and calling its submit method. Be sure to set the
+returnURL property. Consider using setReturnURL:withExtraParams: to
+automatically include extra parameters in the query string. For
+example:
+
+```objc
+IFChargeRequest* chargeRequest =
+    [[[IFChargeRequest alloc] init] autorelease];
+
+// Include my record_id so it comes back with the response
+[chargeRequest
+    setReturnURL:@"com-innerfence-ChargeDemo://chargeResponse"
+    withExtraParams:[NSDictionary dictionaryWithObjectsAndKeys:
+        @"123", @"record_id",
+        nil
+    ]
+];
+
+chargeRequest.amount        = @"50.00";
+chargeRequest.description   = @"Test transaction";
+chargeRequest.invoiceNumber = @"321";
+
+[chargeRequest submit];
+```
+
+* Handle charge responses in your app delegate’s
+application:handleOpenURL: by creating an IFChargeResponse object
+using initWithURL:. Use the responseCode property to determine if the
+transaction was successful. For example:
+
+```objc
+- (BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)url
+{
+    IFChargeResponse* chargeResponse =
+        [[[IFChargeResponse alloc] initWithURL:url] autorelease];
+
+    // My record_id from the request is available in the extraParams
+    // dictionary.
+    NSString* recordId = [chargeResponse.extraParams objectForKey:@"record_id"];
+
+    // Since this value is from the URL, I need to validate it.
+    if ( !IsValidRecordId( recordId ) )
+    {
+        // handle error
+    }
+
+    if ( chargeResponse.responseCode == kIFChargeResponseCodeApproved )
+    {
+        // Transaction succeeded, check out these properties:
+        //  * chargeResponse.amount
+        //  * chargeResponse.cardType
+        //  * chargeResponse.redactedCardNumber
+    }
+    else
+    {
+        // Transaction failed.
+    }
+}
+```
 
 FILE MANIFEST
 =============
