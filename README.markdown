@@ -18,64 +18,6 @@ Please visit our [Developer API
 page](http://www.innerfence.com/apps/credit-card-terminal/app-developers)
 to see how the user experience flow will be like.
 
-PROTOCOL REQUEST
-================
-
-The Charge request is simply a set of query string parameters which
-are appended to a Base URL. Be sure to properly encode the query
-string parameters.
-
-Base URL: `com-innerfence-ccterminal://charge/1.0.0/`
-
-* `returnAppName` - your app's name, displayed to give the user context
-* `returnURL` - your app's URL handler, see PROTOCOL RESPONSE
-* `fm` - if set to 1, the FileMaker-compatible response format will be used
-* `amount` - amount of the transaction (e.g. `10.99`, `1.00`, `0.90`)
-* `currency` - currecy code of amount (e.g. `USD`)
-* `email` - customer's email address for receipt
-* `firstName` - billing first name
-* `lastName` - billing lastName
-* `company` - billing company name
-* `address` - billing street address
-* `city` - billing city
-* `state` - billing state or province (e.g. `TX`, `ON`)
-* `zip` - billing zip or postal code
-* `phone` - billing phone number
-* `country` - billing country code (e.g. `US`)
-* `invoiceNumber` - merchant-assigned invoice number
-* `description` - description of goods or services
-
-Here is a simple example. Please note the correct encoding of parameters:
-
-```
-com-innerfence-ccterminal://charge/1.0.0/?amount=10.99&email=john%40example.com&returnURL=com-your-app%3A%2F%2Faction%2F
-```
-
-PROTOCOL RESPONSE
-=================
-
-When the request includes a `returnURL`, the results of the charge
-will be returned via the URL by including additional query string
-parameters. These parameters all begin with ifcc_ to avoid conflict
-with any query parameters your app may already recognize.
-
-* `ifcc_responseType` - `approved`, `cancelled`, `declined`, or `error`
-* `ifcc_amount` - amount charged (e.g. `10.99`)
-* `ifcc_currency` - currency of amount (e.g. `USD`)
-* `ifcc_redactedCardNumber` - redacted card number (e.g. `XXXXXXXXXXXX1111`)
-* `ifcc_cardType` - card type: `Visa`, `MasterCard`, `Amex`, `Discover`, `Maestro`, `Solo`, or `Unknown`
-
-Here is a simple example:
-
-```
-com-your-app://action/?ifcc_responseType=approved&ifcc_amount=10.99&ifcc_currency=USD&ifcc_redactedCardNumber=XXXXXXXXXXXX1111&ifcc_cardType=Visa
-```
-
-When the `fm=1` parameter is included in the original request, the
-response is modified by including a dollar-sign ($) before each query
-value so that they can be accessed by FileMaker Go scripts. For instance,
-instead of `ifcc_responseType=success`, `$ifcc_responseType=success`.
-
 INTEGRATION CHECKLIST
 =====================
 
@@ -159,6 +101,64 @@ chargeRequest.invoiceNumber = @"321";
     }
 }
 ```
+
+PROTOCOL REQUEST
+================
+
+The Charge request is simply a set of query string parameters which
+are appended to a Base URL. Be sure to properly encode the query
+string parameters.
+
+Base URL: `com-innerfence-ccterminal://charge/1.0.0/`
+
+* `returnAppName` - your app's name, displayed to give the user context
+* `returnURL` - your app's URL handler, see PROTOCOL RESPONSE
+* `fm` - if set to 1, the FileMaker-compatible response format will be used
+* `amount` - amount of the transaction (e.g. `10.99`, `1.00`, `0.90`)
+* `currency` - currecy code of amount (e.g. `USD`)
+* `email` - customer's email address for receipt
+* `firstName` - billing first name
+* `lastName` - billing lastName
+* `company` - billing company name
+* `address` - billing street address
+* `city` - billing city
+* `state` - billing state or province (e.g. `TX`, `ON`)
+* `zip` - billing zip or postal code
+* `phone` - billing phone number
+* `country` - billing country code (e.g. `US`)
+* `invoiceNumber` - merchant-assigned invoice number
+* `description` - description of goods or services
+
+Here is a simple example. Please note the correct encoding of parameters:
+
+```
+com-innerfence-ccterminal://charge/1.0.0/?amount=10.99&email=john%40example.com&returnURL=com-your-app%3A%2F%2Faction%2F
+```
+
+PROTOCOL RESPONSE
+=================
+
+When the request includes a `returnURL`, the results of the charge
+will be returned via the URL by including additional query string
+parameters. These parameters all begin with ifcc_ to avoid conflict
+with any query parameters your app may already recognize.
+
+* `ifcc_responseType` - `approved`, `cancelled`, `declined`, or `error`
+* `ifcc_amount` - amount charged (e.g. `10.99`)
+* `ifcc_currency` - currency of amount (e.g. `USD`)
+* `ifcc_redactedCardNumber` - redacted card number (e.g. `XXXXXXXXXXXX1111`)
+* `ifcc_cardType` - card type: `Visa`, `MasterCard`, `Amex`, `Discover`, `Maestro`, `Solo`, or `Unknown`
+
+Here is a simple example:
+
+```
+com-your-app://action/?ifcc_responseType=approved&ifcc_amount=10.99&ifcc_currency=USD&ifcc_redactedCardNumber=XXXXXXXXXXXX1111&ifcc_cardType=Visa
+```
+
+When the `fm=1` parameter is included in the original request, the
+response is modified by including a dollar-sign ($) before each query
+value so that they can be accessed by FileMaker Go scripts. For instance,
+instead of `ifcc_responseType=success`, `$ifcc_responseType=success`.
 
 FILE MANIFEST
 =============
