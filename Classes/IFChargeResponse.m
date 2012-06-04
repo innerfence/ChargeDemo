@@ -139,6 +139,7 @@ static NSMutableDictionary* IFParseQueryParameters( NSURL* url )
     @"^X*[0-9]{4}$",                   @"redactedCardNumber", \
     @"^[A-Za-z ]{0,20}$",              @"cardType",           \
     @"^[a-z]*$",                       @"responseType",       \
+    @"^.*{1,255}$",                    @"transactionId",      \
     nil
 
 #define IF_NSINT( n )  ( [NSNumber numberWithInteger:(n)] )
@@ -176,6 +177,7 @@ static NSDictionary* _responseCodes;
 @synthesize redactedCardNumber = _redactedCardNumber;
 @synthesize responseCode       = _responseCode;
 @synthesize responseType       = _responseType;
+@synthesize transactionId      = _transactionId;
 
 + (void)initialize
 {

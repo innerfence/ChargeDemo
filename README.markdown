@@ -144,6 +144,7 @@ parameters. These parameters all begin with ifcc_ to avoid conflict
 with any query parameters your app may already recognize.
 
 * `ifcc_responseType` - `approved`, `cancelled`, `declined`, or `error`
+* `ifcc_transactionId` - transaction id (e.g. 100001)
 * `ifcc_amount` - amount charged (e.g. `10.99`)
 * `ifcc_currency` - currency of amount (e.g. `USD`)
 * `ifcc_redactedCardNumber` - redacted card number (e.g. `XXXXXXXXXXXX1111`)
@@ -152,7 +153,7 @@ with any query parameters your app may already recognize.
 Here is a simple example:
 
 ```
-com-your-app://action/?ifcc_responseType=approved&ifcc_amount=10.99&ifcc_currency=USD&ifcc_redactedCardNumber=XXXXXXXXXXXX1111&ifcc_cardType=Visa
+com-your-app://action/?ifcc_responseType=approved&ifcc_transactionId=100001&ifcc_amount=10.99&ifcc_currency=USD&ifcc_redactedCardNumber=XXXXXXXXXXXX1111&ifcc_cardType=Visa
 ```
 
 When the `fm=1` parameter is included in the original request, the
