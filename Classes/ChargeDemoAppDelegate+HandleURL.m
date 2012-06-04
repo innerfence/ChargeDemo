@@ -185,10 +185,12 @@ void ReportError( NSString* message )
     {
         title = @"Charged!";
         message = [NSString stringWithFormat:@"Record: %@\n"
+                                             @"Transaction ID: %@\n"
                                              @"Amount: %@ %@\n"
                                              @"Card Type: %@\n"
                                              @"Redacted Number: %@",
            recordId,
+           chargeResponse.transactionId,
            chargeResponse.amount,
            chargeResponse.currency,
            chargeResponse.cardType,
