@@ -144,7 +144,7 @@ parameters. These parameters all begin with ifcc_ to avoid conflict
 with any query parameters your app may already recognize.
 
 * `ifcc_responseType` - `approved`, `cancelled`, `declined`, or `error`
-* `ifcc_transactionId` - transaction id (e.g. 100001)
+* `ifcc_transactionId` - transaction id (e.g. `100001`)
 * `ifcc_amount` - amount charged (e.g. `10.99`)
 * `ifcc_currency` - currency of amount (e.g. `USD`)
 * `ifcc_redactedCardNumber` - redacted card number (e.g. `XXXXXXXXXXXX1111`)
