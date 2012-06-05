@@ -65,6 +65,7 @@ typedef enum {
     NSString*            _redactedCardNumber;
     IFChargeResponseCode _responseCode;
     NSString*            _responseType;
+    NSString*            _transactionId;
 }
 
 // amount - The amount that was charged to the card. This is a string,
@@ -105,6 +106,21 @@ typedef enum {
 
 // responseCode - One of the IFChargeResponseCode enum values.
 @property (nonatomic,readonly,assign) IFChargeResponseCode responseCode;
+
+// transactionId - The transaction ID of the transaction if the charge
+// was successful.
+//
+// Previous versions of the API didn't return a transaction ID, so nil
+// is a possible return value even for a successful transaction. If
+// you do need the transaction ID, you may want to request the user to
+// update their version of Credit Card Terminal.
+//
+// WARNING - The transaction ID format differs between gateways and
+// we've provided a very relaxed validation limiting it to a max of
+// 255 characters; you must be wary of SQL injection and similar
+// malicious data attacks. As such, you will should ensure whatever
+// you use the transaction ID for properly escapes it.
+@property (nonatomic,readonly,copy) NSString*              transactionId;
 
 // initWithURL - Pass the URL that you receive in
 // application:handleOpenURL: and the resulting object will have the
