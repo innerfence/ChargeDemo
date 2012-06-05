@@ -322,6 +322,7 @@ static NSDictionary* _responseCodes;
     [_extraParams release];
     [_redactedCardNumber release];
     [_responseType release];
+    [_transactionId release];
 
     [super dealloc];
 }
