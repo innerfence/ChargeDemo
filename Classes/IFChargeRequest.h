@@ -51,6 +51,7 @@
     NSString* _lastName;
     NSString* _phone;
     NSString* _state;
+    NSString* _taxRate;
     NSString* _zip;
 }
 
@@ -141,6 +142,12 @@
 // state - The state of the customer's billing address.
 // Up to 40 characters (no symbols) or a valid 2-char state code.
 @property (copy) NSString* state;
+
+// taxRate - The sales tax rate to apply to the amount
+// Between 0 and 100 with upto 3 decimal points (e.g. 8.125)
+// Pass in 0 and it'll determine sales tax rate using the location
+// Leave value as nil and we'll hide the sales tax option
+@property (copy) NSString* taxRate;
 
 // zip - The ZIP code of the customer's billing address.
 // Up to 20 characters (no symbols).

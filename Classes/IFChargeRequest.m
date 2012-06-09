@@ -81,6 +81,7 @@ static NSString* IFEncodeURIComponent( NSString* s )
     @"lastName", \
     @"phone", \
     @"state", \
+    @"taxRate", \
     @"zip", \
     nil
 
@@ -118,6 +119,7 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 @synthesize lastName       = _lastName;
 @synthesize phone          = _phone;
 @synthesize state          = _state;
+@synthesize taxRate        = _taxRate;
 @synthesize zip            = _zip;
 
 + (void)initialize
@@ -327,6 +329,7 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [_lastName release];
     [_phone release];
     [_state release];
+    [_taxRate release];
     [_zip release];
 
     [super dealloc];
