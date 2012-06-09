@@ -65,6 +65,9 @@ typedef enum {
     NSString*            _redactedCardNumber;
     IFChargeResponseCode _responseCode;
     NSString*            _responseType;
+    NSString*            _taxAmount;
+    NSString*            _taxRate;
+    NSString*            _tipAmount;
     NSString*            _transactionId;
 }
 
@@ -106,6 +109,22 @@ typedef enum {
 
 // responseCode - One of the IFChargeResponseCode enum values.
 @property (nonatomic,readonly,assign) IFChargeResponseCode responseCode;
+
+// taxAmount - The tax portion of amount. This is a string, which is
+// a currency value to two decimal places like @"4.06". This property
+// will only be set if sales tax was applied.
+@property (nonatomic,readonly,copy)   NSString*            taxAmount;
+
+// taxRate - The tax rate that was applied to the original amount.
+// This is a string, which is a number between 0 and 100 with upto
+// three decimal places like @"8.125". This property will only be set
+// if sales tax was applied.
+@property (nonatomic,readonly,copy)   NSString*            taxRate;
+
+// tipAmount - The tip portion of amount. This is a string, which is
+// a currency value to two decimal places like @"10.00". This property
+// will only be set if a tip was provided.
+@property (nonatomic,readonly,copy)   NSString*            tipAmount;
 
 // transactionId - The transaction ID of the transaction if the charge
 // was successful.

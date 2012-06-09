@@ -133,13 +133,17 @@ static NSMutableDictionary* IFParseQueryParameters( NSURL* url )
 
 #endif
 
-#define IF_CHARGE_RESPONSE_FIELD_PATTERNS                     \
-    @"^(0|[1-9][0-9]*)[.][0-9][0-9]$", @"amount",             \
-    @"^[A-Z]{3}$",                     @"currency",           \
-    @"^X*[0-9]{4}$",                   @"redactedCardNumber", \
-    @"^[A-Za-z ]{0,20}$",              @"cardType",           \
-    @"^[a-z]*$",                       @"responseType",       \
-    @"^.{1,255}$",                     @"transactionId",      \
+#define IF_CHARGE_RESPONSE_FIELD_PATTERNS                            \
+    @"^(0|[1-9][0-9]*)[.][0-9][0-9]$",        @"amount",             \
+    @"^[A-Z]{3}$",                            @"currency",           \
+    @"^X*[0-9]{4}$",                          @"redactedCardNumber", \
+    @"^[A-Za-z ]{0,20}$",                     @"cardType",           \
+    @"^[a-z]*$",                              @"responseType",       \
+    @"^.{1,255}$",                            @"tax_amount",         \
+    @"^(0|[1-9][0-9]*)[.][0-9][0-9]$",        @"tax_amount",         \
+    @"^(0|100|[1-9][0-9]?)([.][0-9]{1,3})?$", @"tax_rate",           \
+    @"^(0|[1-9][0-9]*)[.][0-9][0-9]$",        @"tip_amount",         \
+    @"^.{1,255}$",                            @"transactionId",      \
     nil
 
 #define IF_NSINT( n )  ( [NSNumber numberWithInteger:(n)] )
@@ -177,6 +181,9 @@ static NSDictionary* _responseCodes;
 @synthesize redactedCardNumber = _redactedCardNumber;
 @synthesize responseCode       = _responseCode;
 @synthesize responseType       = _responseType;
+@synthesize taxAmount          = _taxAmount;
+@synthesize taxRate            = _taxRate;
+@synthesize tipAmount          = _tipAmount;
 @synthesize transactionId      = _transactionId;
 
 + (void)initialize
