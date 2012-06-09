@@ -73,7 +73,8 @@ typedef enum {
 
 // amount - The amount that was charged to the card. This is a string,
 // which is a currency value to two decimal places like @"50.00". This
-// property will only be set if responseCode is Accepted.
+// property will only be set if responseCode is Accepted. This amount
+// includes tax and tip.
 @property (nonatomic,readonly,copy)   NSString*            amount;
 
 // cardType - The type of card that was charged. This will be
