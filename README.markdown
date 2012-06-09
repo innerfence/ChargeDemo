@@ -97,6 +97,7 @@ chargeRequest.taxRate = @"8.5";
     if ( chargeResponse.responseCode == kIFChargeResponseCodeApproved )
     {
         // Transaction succeeded, check out these properties:
+        //  * chargeResponse.transactionId
         //  * chargeResponse.amount (includes tax and tip)
         //  * chargeResponse.taxAmount
         //  * chargeResponse.taxRate
