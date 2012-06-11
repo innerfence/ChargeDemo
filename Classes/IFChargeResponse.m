@@ -133,16 +133,16 @@ static NSMutableDictionary* IFParseQueryParameters( NSURL* url )
 
 #endif
 
-#define IF_CHARGE_RESPONSE_FIELD_PATTERNS                            \
-    @"^(0|[1-9][0-9]*)[.][0-9][0-9]$",        @"amount",             \
-    @"^[A-Z]{3}$",                            @"currency",           \
-    @"^X*[0-9]{4}$",                          @"redactedCardNumber", \
-    @"^[A-Za-z ]{0,20}$",                     @"cardType",           \
-    @"^[a-z]*$",                              @"responseType",       \
-    @"^(0|[1-9][0-9]*)[.][0-9][0-9]$",        @"taxAmount",          \
-    @"^(0|100|[1-9][0-9]?)([.][0-9]{1,3})?$", @"taxRate",            \
-    @"^(0|[1-9][0-9]*)[.][0-9][0-9]$",        @"tipAmount",          \
-    @"^.{1,255}$",                            @"transactionId",      \
+#define IF_CHARGE_RESPONSE_FIELD_PATTERNS                     \
+    @"^(0|[1-9][0-9]*)[.][0-9][0-9]$", @"amount",             \
+    @"^[A-Z]{3}$",                     @"currency",           \
+    @"^X*[0-9]{4}$",                   @"redactedCardNumber", \
+    @"^[A-Za-z ]{0,20}$",              @"cardType",           \
+    @"^[a-z]*$",                       @"responseType",       \
+    @"^(0|[1-9][0-9]*)[.][0-9][0-9]$", @"taxAmount",          \
+    @"^([0-9]{1-2})([.][0-9]{1,3})?$", @"taxRate",            \
+    @"^(0|[1-9][0-9]*)[.][0-9][0-9]$", @"tipAmount",          \
+    @"^.{1,255}$",                     @"transactionId",      \
     nil
 
 #define IF_NSINT( n )  ( [NSNumber numberWithInteger:(n)] )
