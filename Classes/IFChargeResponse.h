@@ -116,10 +116,10 @@ typedef enum {
 // will only be set if sales tax was applied.
 @property (nonatomic,readonly,copy)   NSString*            taxAmount;
 
-// taxRate - The tax rate that was applied to the original amount.
-// This is a string, which is a number between 0 and 100 with upto
-// three decimal places like @"8.125". This property will only be set
-// if sales tax was applied.
+// taxRate - The tax rate percentage that was applied to the original
+// amount. This is a string, which is a number between 0 and 100 with
+// upto three decimal places like @"8.125". This property will only be
+// set if sales tax was applied.
 @property (nonatomic,readonly,copy)   NSString*            taxRate;
 
 // tipAmount - The tip portion of amount. This is a string, which is

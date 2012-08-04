@@ -65,8 +65,8 @@ chargeRequest.description   = @"Test transaction";
 chargeRequest.invoiceNumber = @"321";
 
 // Include a tax rate if you want Credit Card terminal to calculate
-// sales tax. If you pass in @"0", we'll determine the sales tax based
-// on the user’s location. If you leave it as nil, we’ll hide the
+// sales tax. If you pass in @"default", we'll use the default sales
+// tax preset by the user. If you leave it as nil, we’ll hide the
 // sales tax option from the user.
 chargeRequest.taxRate = @"8.5";
 
