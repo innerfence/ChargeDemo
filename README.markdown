@@ -123,6 +123,7 @@ Base URL: `com-innerfence-ccterminal://charge/1.0.0/`
 
 * `returnAppName` - your app's name, displayed to give the user context
 * `returnURL` - your app's URL handler, see PROTOCOL RESPONSE
+* `returnImmediately` - if set to 1,  the `returnURL` will be called with the result immediately instead of waiting for the end user to tap through the “Approved” screen
 * `fm` - if set to 1, the FileMaker-compatible response format will be used
 * `amount` - amount of the transaction (e.g. `10.99`, `1.00`, `0.90`)
 * `taxRate` - sales tax rate to apply to amount (e.g. `8`, `8.5`, `8.25`, `8.125`)

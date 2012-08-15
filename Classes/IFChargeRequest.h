@@ -37,6 +37,7 @@
 
     NSString* _returnAppName;
     NSString* _returnURL;
+    NSString* _returnImmediately;
 
     NSString* _address;
     NSString* _amount;
@@ -75,6 +76,12 @@
 // when the transaction is complete. Should be a URL that is
 // registered to be handled by this app.
 @property (copy) NSString* returnURL;
+
+// returnImmediately - Credit card terminal will call back to the
+// returnURL immediately after the transaction if this is set to @"1",
+// not waiting for the user to tap through the approved transction
+// confirmation screen.
+@property (copy) NSString* returnImmediately;
 
 // setReturnURL - this setter is a helper that will take the extra
 // parameters passed in the dictionary and encode and include them in

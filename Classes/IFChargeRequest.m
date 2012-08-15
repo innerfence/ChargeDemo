@@ -68,6 +68,7 @@ static NSString* IFEncodeURIComponent( NSString* s )
 #define IF_CHARGE_REQUEST_FIELD_LIST \
     @"returnAppName", \
     @"returnURL", \
+    @"returnImmediately", \
     @"address", \
     @"amount", \
     @"city", \
@@ -103,24 +104,25 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 @implementation IFChargeRequest
 
-@synthesize delegate       = _delegate;
-@synthesize returnAppName  = _returnAppName;
-@synthesize returnURL      = _returnURL;
-@synthesize address        = _address;
-@synthesize amount         = _amount;
-@synthesize city           = _city;
-@synthesize company        = _company;
-@synthesize country        = _country;
-@synthesize currency       = _currency;
-@synthesize description    = _description;
-@synthesize email          = _email;
-@synthesize firstName      = _firstName;
-@synthesize invoiceNumber  = _invoiceNumber;
-@synthesize lastName       = _lastName;
-@synthesize phone          = _phone;
-@synthesize state          = _state;
-@synthesize taxRate        = _taxRate;
-@synthesize zip            = _zip;
+@synthesize delegate          = _delegate;
+@synthesize returnAppName     = _returnAppName;
+@synthesize returnURL         = _returnURL;
+@synthesize returnImmediately = _returnImmediately;
+@synthesize address           = _address;
+@synthesize amount            = _amount;
+@synthesize city              = _city;
+@synthesize company           = _company;
+@synthesize country           = _country;
+@synthesize currency          = _currency;
+@synthesize description       = _description;
+@synthesize email             = _email;
+@synthesize firstName         = _firstName;
+@synthesize invoiceNumber     = _invoiceNumber;
+@synthesize lastName          = _lastName;
+@synthesize phone             = _phone;
+@synthesize state             = _state;
+@synthesize taxRate           = _taxRate;
+@synthesize zip               = _zip;
 
 + (void)initialize
 {
@@ -315,6 +317,7 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
     [_returnAppName release];
     [_returnURL release];
+    [_returnImmediately release];
 
     [_address release];
     [_amount release];
