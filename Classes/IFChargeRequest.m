@@ -78,6 +78,7 @@ static NSString* IFEncodeURIComponent( NSString* s )
     @"description", \
     @"email", \
     @"firstName", \
+    @"fixedAmount", \
     @"invoiceNumber", \
     @"lastName", \
     @"phone", \
@@ -117,6 +118,7 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 @synthesize description       = _description;
 @synthesize email             = _email;
 @synthesize firstName         = _firstName;
+@synthesize fixedAmount       = _fixedAmount;
 @synthesize invoiceNumber     = _invoiceNumber;
 @synthesize lastName          = _lastName;
 @synthesize phone             = _phone;
@@ -328,6 +330,7 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [_description release];
     [_email release];
     [_firstName release];
+    [_fixedAmount release];
     [_invoiceNumber release];
     [_lastName release];
     [_phone release];

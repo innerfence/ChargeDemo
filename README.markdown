@@ -130,6 +130,7 @@ Base URL: `com-innerfence-ccterminal://charge/1.0.0/`
 * `currency` - currecy code of amount (e.g. `USD`)
 * `email` - customer's email address for receipt
 * `firstName` - billing first name
+* `fixedAmount` - if set to 1, the amount (subtotal) will be unchangable. If tips or sales tax is enabled, the final amount can still differ
 * `lastName` - billing lastName
 * `company` - billing company name
 * `address` - billing street address
