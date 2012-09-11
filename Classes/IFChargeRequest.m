@@ -71,6 +71,7 @@ static NSString* IFEncodeURIComponent( NSString* s )
     @"returnImmediately", \
     @"address", \
     @"amount", \
+    @"amountFixed", \
     @"city", \
     @"company", \
     @"country", \
@@ -78,7 +79,6 @@ static NSString* IFEncodeURIComponent( NSString* s )
     @"description", \
     @"email", \
     @"firstName", \
-    @"fixedAmount", \
     @"invoiceNumber", \
     @"lastName", \
     @"phone", \
@@ -111,6 +111,7 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 @synthesize returnImmediately = _returnImmediately;
 @synthesize address           = _address;
 @synthesize amount            = _amount;
+@synthesize amountFixed       = _amountFixed;
 @synthesize city              = _city;
 @synthesize company           = _company;
 @synthesize country           = _country;
@@ -118,7 +119,6 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 @synthesize description       = _description;
 @synthesize email             = _email;
 @synthesize firstName         = _firstName;
-@synthesize fixedAmount       = _fixedAmount;
 @synthesize invoiceNumber     = _invoiceNumber;
 @synthesize lastName          = _lastName;
 @synthesize phone             = _phone;
@@ -323,6 +323,7 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
     [_address release];
     [_amount release];
+    [_amountFixed release];
     [_city release];
     [_company release];
     [_country release];
@@ -330,7 +331,6 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [_description release];
     [_email release];
     [_firstName release];
-    [_fixedAmount release];
     [_invoiceNumber release];
     [_lastName release];
     [_phone release];

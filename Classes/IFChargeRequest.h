@@ -41,6 +41,7 @@
 
     NSString* _address;
     NSString* _amount;
+    NSString* _amountFixed;
     NSString* _city;
     NSString* _company;
     NSString* _country;
@@ -48,7 +49,6 @@
     NSString* _description;
     NSString* _email;
     NSString* _firstName;
-    NSString* _fixedAmount;
     NSString* _invoiceNumber;
     NSString* _lastName;
     NSString* _phone;
@@ -107,6 +107,11 @@
 // Up to 15 digits with a decimal point.
 @property (copy) NSString* amount;
 
+// amountFixed - The amount (subtotal) will be unchangable if this is
+// set to @"1". If tips or sales tax is enabled, the final amount can
+// still differ.
+@property (copy) NSString* amountFixed;
+
 // city - The city of the customer's billing address.
 // Up to 40 characters (no symbols).
 @property (copy) NSString* city;
@@ -134,11 +139,6 @@
 // firstName - The first name associated with the customer's billing address.
 // Up to 50 characters (no symbols).
 @property (copy) NSString* firstName;
-
-// fixedAmount - The amount (subtotal) will be unchangable if this is
-// set to @"1". If tips or sales tax is enabled, the final amount can
-// still differ.
-@property (copy) NSString* fixedAmount;
 
 // invoiceNumber - The merchant-assigned invoice number.
 // Up to 20 characters (no symbols).
