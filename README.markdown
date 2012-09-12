@@ -126,11 +126,11 @@ Base URL: `com-innerfence-ccterminal://charge/1.0.0/`
 * `returnImmediately` - if set to 1,  the `returnURL` will be called with the result immediately instead of waiting for the end user to tap through the “Approved” screen
 * `fm` - if set to 1, the FileMaker-compatible response format will be used
 * `amount` - amount of the transaction (e.g. `10.99`, `1.00`, `0.90`)
+* `amountFixed` - if set to 1, the amount (subtotal) will be unchangable. If tips or sales tax is enabled, the final amount can still differ
 * `taxRate` - sales tax rate to apply to amount (e.g. `8`, `8.5`, `8.25`, `8.125`)
 * `currency` - currecy code of amount (e.g. `USD`)
 * `email` - customer's email address for receipt
 * `firstName` - billing first name
-* `fixedAmount` - if set to 1, the amount (subtotal) will be unchangable. If tips or sales tax is enabled, the final amount can still differ
 * `lastName` - billing lastName
 * `company` - billing company name
 * `address` - billing street address
