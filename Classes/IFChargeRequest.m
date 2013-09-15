@@ -173,7 +173,6 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 // otherwise, display a default dialog.
 - (void)creditCardTerminalNotInstalled
 {
-    [self autorelease];
     [_delegate autorelease];
 
     if ( _delegate )
