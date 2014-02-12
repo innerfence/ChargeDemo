@@ -15,7 +15,7 @@ Protocol details are provided below in the case that you cannot or do
 not wish to use our Objective-C classes.
 
 Please visit our [Developer API
-page](http://www.innerfence.com/apps/credit-card-terminal/app-developers)
+page](http://www.innerfence.com/apps/credit-card-terminal/developer-api)
 to see how the user experience flow will be like.
 
 INTEGRATION CHECKLIST
@@ -24,8 +24,8 @@ INTEGRATION CHECKLIST
 * Add the IFChargeRequest.h, IFChargeRequest.m, IFChargeResponse.h,
   and IFChargeResponse.m files to your Xcode project.
 
-* Make sure your application is registered to handle a URL scheme
-  inyour Info.plist. For example:
+* Make sure your application is registered to handle a URL scheme in
+  your Info.plist. For example:
 
 ```xml
 <key>CFBundleURLTypes</key>
@@ -208,7 +208,7 @@ created and submitted.
 
 * Info.plist
 
-Registers the com-inerfence-ChargeDemo:// URL scheme.
+Registers the com-innerfence-ChargeDemo:// URL scheme.
 
 * Classes/ChargeDemoAppDelegate+HandleURL.m
 
