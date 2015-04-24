@@ -171,13 +171,11 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 // If there's a delegate, invoke -creditCardTerminalNotInstalled on it;
 // otherwise, display a default dialog.
-- (void)creditCardTerminalNotInstalled
+- (void)creditCardTerminalNotInstalled:(NSObject*)delegate
 {
-    [_delegate autorelease];
-
-    if ( _delegate )
+    if ( [delegate respondsToSelector:@selector(creditCardTerminalNotInstalled)] )
     {
-        [_delegate creditCardTerminalNotInstalled];
+        [delegate creditCardTerminalNotInstalled];
     }
 #if TARGET_OS_IPHONE
     else
@@ -289,7 +287,7 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         if ( !assuredSuccess )
         {
             // Assured failure -- early out.
-            [self creditCardTerminalNotInstalled];
+            [self creditCardTerminalNotInstalled:_delegate];
             return;
         }
     }
@@ -302,11 +300,14 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         // terminate. We register here to receive a callback in 1
         // second, which will only happen if we don't terminate,
         // meaning the openURL failed.
-        [self retain];
-        [_delegate retain];
-        [self performSelector:@selector(creditCardTerminalNotInstalled)
-              withObject:nil
-              afterDelay:1];
+        NSObject* delegate = _delegate;
+        dispatch_after(
+            dispatch_time( DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC) ),
+            dispatch_get_main_queue(),
+            ^{
+                [self creditCardTerminalNotInstalled:delegate];
+            }
+        );
     }
 }
 
