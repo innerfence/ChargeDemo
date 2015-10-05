@@ -8,11 +8,11 @@
 //
 // You may license this source code under the MIT License. See COPYING.
 //
-// Copyright (c) 2009 Inner Fence, LLC
+// Copyright (c) 2015 Inner Fence Holdings, Inc.
 //
-#import "ChargeDemoAppDelegate.h"
+#import "AppDelegate.h"
 
-// The IFChargeResponse class is provided by Inner Fence, LLC under the
+// The IFChargeResponse class is provided by Inner Fence under the
 // MIT License. We recommend that you include the file directly in
 // your iPhone project for calling into Credit Card Terminal.
 #import "IFChargeResponse.h"
@@ -88,16 +88,19 @@ Cleanup:
 
 void ReportError( NSString* message )
 {
-    [[[[UIAlertView alloc]
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated"
+    [[[UIAlertView alloc]
           initWithTitle:@"Error"
           message:message
           delegate:nil
           cancelButtonTitle:@"OK"
           otherButtonTitles:nil
-    ] autorelease] show];
+    ] show];
+#pragma clang diagnostic pop
 }
 
-@implementation ChargeDemoAppDelegate (HandleURL)
+@implementation AppDelegate (HandleURL)
 
 - (BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)url
 {
@@ -158,10 +161,6 @@ void ReportError( NSString* message )
         ReportError( @"URL not valid charge response, abandoning the request!" );
         return NO;
     }
-    @finally
-    {
-        [chargeResponse autorelease];
-    }
 
     // Any extra params we included with the return URL can be
     // queried from the extraParams dictionary.
@@ -214,7 +213,6 @@ void ReportError( NSString* message )
             cancelButtonTitle:@"OK"
             otherButtonTitles:nil
     ] show];
-    [alert release];
 
     return YES;
 }

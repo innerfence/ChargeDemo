@@ -6,7 +6,7 @@
 // You may license this source code under the MIT License, reproduced
 // below.
 //
-// Copyright (c) 2009 Inner Fence, LLC
+// Copyright (c) 2015 Inner Fence Holdings, Inc.
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -51,6 +51,9 @@
 
 static NSString* IFEncodeURIComponent( NSString* s )
 {
+// Must support iOS8, so ignore iOS9 deprecation of CFURLCreateStringByAddingPercentEscapes
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated"
     CFStringRef encodedValue =
         CFURLCreateStringByAddingPercentEscapes(
             kCFAllocatorDefault,
@@ -59,6 +62,7 @@ static NSString* IFEncodeURIComponent( NSString* s )
             (CFStringRef)URI_RESERVED_CHARS,
             kCFStringEncodingUTF8
         );
+#pragma clang diagnostic push
 
     return [NSMakeCollectable( encodedValue ) autorelease];
 }
@@ -143,6 +147,11 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     {
         self.returnAppName = [[NSBundle mainBundle]
             objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+        if ( 0 == self.returnAppName.length )
+        {
+            self.returnAppName = [[NSBundle mainBundle]
+                objectForInfoDictionaryKey:@"CFBundleName"];
+        }
     }
     return self;
 }

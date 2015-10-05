@@ -6,7 +6,7 @@
 // You may license this source code under the MIT License, reproduced
 // below.
 //
-// Copyright (c) 2009 Inner Fence, LLC
+// Copyright (c) 2015 Inner Fence Holdings, Inc.
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -119,10 +119,14 @@ static NSMutableDictionary* IFParseQueryParameters( NSURL* url )
                 continue;
             }
 
+// Must support iOS8, so ignore iOS9 deprecation of stringByReplacingPercentEscapesUsingEncoding:
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated"
             NSString* decodedField = [[queryComps objectAtIndex:0]
                 stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             NSString* decodedValue = [[queryComps objectAtIndex:1]
                 stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+#pragma clang diagnostic pop
 
             [dict setObject:decodedValue forKey:decodedField];
         }

@@ -24,6 +24,10 @@ INTEGRATION CHECKLIST
 * Add the IFChargeRequest.h, IFChargeRequest.m, IFChargeResponse.h,
   and IFChargeResponse.m files to your Xcode project.
 
+* For backwards-compatibility, these classes do not use ARC, so you 
+  may need to add the -fno-objc-arc flag for compilation step on those 
+  files.
+
 * Make sure your application is registered to handle a URL scheme in
   your Info.plist. For example:
 
@@ -41,6 +45,16 @@ INTEGRATION CHECKLIST
 </array>
 ```
 
+* For iOS9, you should also register in your Info.plist to query whether 
+  Credit Card Terminal is installed. Add this to your Info.plist:
+
+```xml
+<key>LSApplicationQueriesSchemes</key>
+<array>
+<string>com-innerfence-ccterminal</string>
+</array> 
+```
+
 * Request payment by creating an IFChargeRequest object, setting its
   properties, and calling its submit method. Be sure to set the
   returnURL property. Consider using setReturnURL:withExtraParams: to
@@ -48,16 +62,12 @@ INTEGRATION CHECKLIST
   example:
 
 ```objc
-IFChargeRequest* chargeRequest =
-    [[[IFChargeRequest alloc] init] autorelease];
+IFChargeRequest* chargeRequest = [IFChargeRequest new];
 
 // Include my record_id so it comes back with the response
 [chargeRequest
     setReturnURL:@"com-innerfence-ChargeDemo://chargeResponse"
-    withExtraParams:[NSDictionary dictionaryWithObjectsAndKeys:
-        @"123", @"record_id",
-        nil
-    ]
+    withExtraParams:@{ @"record_id": @"123" }
 ];
 
 chargeRequest.amount        = @"50.00";
@@ -81,8 +91,7 @@ chargeRequest.taxRate = @"8.5";
 ```objc
 - (BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)url
 {
-    IFChargeResponse* chargeResponse =
-        [[[IFChargeResponse alloc] initWithURL:url] autorelease];
+    IFChargeResponse* chargeResponse = [[IFChargeResponse alloc] initWithURL:url];
 
     // My record_id from the request is available in the extraParams
     // dictionary.

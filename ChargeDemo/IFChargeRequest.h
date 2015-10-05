@@ -7,7 +7,7 @@
 // You may license this source code under the MIT License, reproduced
 // below.
 //
-// Copyright (c) 2009 Inner Fence, LLC
+// Copyright (c) 2015 Inner Fence Holdings, Inc.
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -30,6 +30,8 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
 //
+#import <Foundation/Foundation.h>
+
 @interface IFChargeRequest : NSObject
 {
 @protected
