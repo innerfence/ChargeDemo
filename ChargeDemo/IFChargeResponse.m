@@ -333,6 +333,9 @@ static NSDictionary* _responseCodes;
     [_redactedCardNumber release];
     [_responseType release];
     [_transactionId release];
+    [_taxAmount release];
+    [_taxRate release];
+    [_tipAmount release];
 
     [super dealloc];
 }
