@@ -171,11 +171,11 @@
 + (NSArray*)knownFields;
 
 // init - designated initializer
-- init;
+- (instancetype)init;
 
 // initWithDelegate: - Specifies the optional delegate when creating
 // the object.
-- initWithDelegate:(NSObject*)delegate;
+- (instancetype)initWithDelegate:(NSObject*)delegate;
 
 // requestURL - Retrieves the URL for the request. If you have special
 // requirements around invoking the URL, you can use this instead of

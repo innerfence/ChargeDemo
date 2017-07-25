@@ -208,7 +208,7 @@ static NSDictionary* _responseCodes;
     return _responseCodes;
 }
 
-- initWithURL:(NSURL*)url
+- (instancetype)initWithURL:(NSURL*)url
 {
     if ( ( self = [super init] ) )
     {

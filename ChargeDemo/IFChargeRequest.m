@@ -141,7 +141,7 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 }
 
 // Designated constructor
-- init
+- (instancetype)init
 {
     if ( ( self = [super init] ) )
     {
@@ -156,7 +156,7 @@ static char _nonceAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     return self;
 }
 
-- initWithDelegate:(NSObject*)delegate
+- (instancetype)initWithDelegate:(NSObject*)delegate
 {
     if ( ( self = [self init] ) )
     {

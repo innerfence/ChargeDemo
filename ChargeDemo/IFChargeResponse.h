@@ -150,7 +150,7 @@ typedef enum {
 // will be exposed in the extraParams dictionary for your convenience.
 //
 // Throws an exception if the input is not a valid charge response URL.
-- initWithURL:(NSURL*)url;
+- (instancetype)initWithURL:(NSURL*)url;
 
 + (NSArray*)knownFields;
 + (NSDictionary*)responseCodeMapping;
