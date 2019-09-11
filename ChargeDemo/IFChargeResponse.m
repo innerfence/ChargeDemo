@@ -33,78 +33,19 @@
 
 #import "IFChargeRequest.h"
 
-#ifdef IF_INTERNAL
-
-#import "GTMRegex.h"   // for [NSString -gtm_matchesPattern:]
-#import "IFURLUtils.h"
-
 static __inline__ BOOL IFMatchesPattern( NSString* s, NSString* p )
 {
-    return [s gtm_matchesPattern:p];
+    return NSNotFound != [p rangeOfString:s options:NSRegularExpressionSearch].location;
 }
 
-#else
+#ifndef IF_INTERNAL
 
-#import <regex.h>
+#define IFDecodeURIComponent( s ) ( [(s) stringByRemovingPercentEncoding] )
+#define DebugLog NSLog
 
-static BOOL IFMatchesPattern( NSString* nsString, NSString* nsPattern )
-{
-    const char* string  = [nsString  cStringUsingEncoding:NSUTF8StringEncoding];
-    const char* pattern = [nsPattern cStringUsingEncoding:NSUTF8StringEncoding];
-
-    BOOL matches = NO;
-    BOOL compiled = NO;
-    int re_error;
-    regex_t re;
-
-    re_error = regcomp(
-        &re,
-        pattern,
-        REG_EXTENDED
-        | REG_NOSUB    // match only, no captures
-    );
-    if ( re_error )
-    {
-        NSLog( @"regcomp error %d", re_error );
-        goto Cleanup;
-    }
-    compiled = YES;
-
-    re_error = regexec(
-        &re,
-        string,
-        0, NULL, // no captures
-        0        // no flags
-    );
-    if ( re_error )
-    {
-        if ( REG_NOMATCH == re_error )
-        {
-            NSLog( @"string '%s' does not match pattern '%s'", string, pattern );
-        }
-        else
-        {
-            NSLog( @"regexec error %d", re_error );
-        }
-        goto Cleanup;
-    }
-
-    // No error, regex matched, input is valid
-    matches = YES;
-
-Cleanup:
-    if ( compiled )
-    {
-        regfree( &re );
-    }
-
-    return matches;
-}
-
-static NSMutableDictionary* IFParseQueryParameters( NSURL* url )
+static NSMutableDictionary<NSString*,NSString*>* IFParseQueryString( NSString* queryString )
 {
     NSMutableDictionary* dict = [[[NSMutableDictionary alloc] init] autorelease];
-    NSString*     queryString = [url query];
 
     if ( [queryString length] )
     {
@@ -119,16 +60,17 @@ static NSMutableDictionary* IFParseQueryParameters( NSURL* url )
                 continue;
             }
 
-// Must support iOS8, so ignore iOS9 deprecation of stringByReplacingPercentEscapesUsingEncoding:
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated"
-            NSString* decodedField = [[queryComps objectAtIndex:0]
-                stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            NSString* decodedValue = [[queryComps objectAtIndex:1]
-                stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-#pragma clang diagnostic pop
+            NSString* decodedField = IFDecodeURIComponent( [queryComps objectAtIndex:0] );
+            NSString* decodedValue = IFDecodeURIComponent( [queryComps objectAtIndex:1] );
 
-            [dict setObject:decodedValue forKey:decodedField];
+            if( decodedField && decodedValue )
+            {
+                [dict setObject:decodedValue forKey:decodedField];
+            }
+            else
+            {
+                DebugLog( @"Invalid Query Pair:%@", queryPair );
+            }
         }
     }
 
@@ -218,7 +160,7 @@ static NSDictionary* _responseCodes;
                          format:@"URL must not be nil"];
         }
 
-        NSMutableDictionary* queryFields = IFParseQueryParameters( url );
+        NSMutableDictionary* queryFields = IFParseQueryString( url.query );
 
         for ( NSString* field in _fieldList )
         {

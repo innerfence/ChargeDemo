@@ -17,73 +17,15 @@
 // your iPhone project for calling into Credit Card Terminal.
 #import "IFChargeResponse.h"
 
-// This example uses <regex.h> to validate input. For a convenient
-// Objective-C wrapper to <regex.h>, see GTMRegex from
-// http://code.google.com/p/google-toolbox-for-mac/
-#import <regex.h>
-
 // kRecordIdPattern -- the regular expression for validating the
 // recordId extra param that ChargeDemo passes with its charge request
 // and expects to receive back with the response.
-//
-// See `man re_format` for documentation about regular expressions.
-//
-// Or, I find `man perlre` to be a better introduction, but beware the
-// <regex.h> extended regex format doesn't have quite as many bells
-// and whistles as perl REs.
-static const char* kRecordIdPattern = "^[0-9]+$";
+static NSString* const kRecordIdPattern = @"^[0-9]+$";
 
 // IsValidRecordId -- matches kRecordIdPattern against nsRecordId
 BOOL IsValidRecordId( NSString* nsRecordId )
 {
-    const char* recordId = [nsRecordId cStringUsingEncoding:NSUTF8StringEncoding];
-    BOOL matches = NO;
-    BOOL compiled = NO;
-    int re_error;
-    regex_t re;
-
-    re_error = regcomp(
-        &re,
-        kRecordIdPattern,
-        REG_EXTENDED
-        | REG_NOSUB    // match only, no captures
-    );
-    if ( re_error )
-    {
-        NSLog( @"regcomp error %d", re_error );
-        goto Cleanup;
-    }
-    compiled = YES;
-
-    re_error = regexec(
-        &re,
-        recordId,
-        0, NULL, // no captures
-        0        // no flags
-    );
-    if ( re_error )
-    {
-        if ( REG_NOMATCH == re_error )
-        {
-            NSLog( @"recordId does not match pattern %s", kRecordIdPattern );
-        }
-        else
-        {
-            NSLog( @"regexec error %d", re_error );
-        }
-        goto Cleanup;
-    }
-
-    // No error, regex matched, input is valid
-    matches = YES;
-
-Cleanup:
-    if ( compiled )
-    {
-        regfree( &re );
-    }
-
-    return matches;
+    return NSNotFound != [nsRecordId rangeOfString:kRecordIdPattern options:NSRegularExpressionSearch].location;
 }
 
 void ReportError( NSString* message )
