@@ -38,7 +38,11 @@ static __inline__ BOOL IFMatchesPattern( NSString* s, NSString* p )
     return NSNotFound != [p rangeOfString:s options:NSRegularExpressionSearch].location;
 }
 
-#ifndef IF_INTERNAL
+#ifdef IF_INTERNAL
+
+#import "IFURLUtils.h"
+
+#else
 
 #define IFDecodeURIComponent( s ) ( [(s) stringByRemovingPercentEncoding] )
 #define DebugLog NSLog
